@@ -23,6 +23,7 @@ export interface IMyOptions {
   markCurrentDay?: boolean;
   markCurrentMonth?: boolean;
   markCurrentYear?: boolean;
+  monthMode?: boolean;
   monthSelector?: boolean;
   yearSelector?: boolean;
   disableHeaderButtons?: boolean;

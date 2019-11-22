@@ -58,7 +58,7 @@ export class CalendarComponent implements AfterViewInit, OnDestroy {
 
   constructor(private elem: ElementRef, private renderer: Renderer2, private cdr: ChangeDetectorRef, private utilService: UtilService) {
     this.clickListener = renderer.listen(elem.nativeElement, CLICK, (event: MouseEvent) => {
-      if ((this.opts.monthSelector || this.opts.yearSelector) && event.target) {
+      if ((this.opts.monthSelector || this.opts.yearSelector) && event.target && !this.opts.monthMode) {
         this.resetMonthYearSelect();
       }
     });
@@ -176,6 +176,11 @@ export class CalendarComponent implements AfterViewInit, OnDestroy {
   }
 
   onMonthViewBtnClicked(): void {
+    if (this.opts.monthMode) {
+      this.selectMonth = true;
+      return;
+    }
+
     this.selectMonth = !this.selectMonth;
     this.selectYear = false;
     this.cdr.detectChanges();
@@ -227,6 +232,7 @@ export class CalendarComponent implements AfterViewInit, OnDestroy {
     this.selectedMonth.year = this.visibleMonth.year;
     this.generateCalendar(monthNbr, cell.year, yc);
     this.selectYear = false;
+    this.selectMonth = this.opts.monthMode;
     this.selectorEl.nativeElement.focus();
   }
 
@@ -477,7 +483,12 @@ export class CalendarComponent implements AfterViewInit, OnDestroy {
           this.rangeDateSelection({
             isBegin: false,
             date,
-            jsDate: this.utilService.getDate(date),
+            jsDate: this.utilService.getDate({
+              ...date,
+              day: this.opts.monthMode && this.opts.dateRange
+                    ? this.daysInMonth(date.month, date.year)
+                    : date.day
+            }),
             dateFormat: dateFormat,
             formatted: this.utilService.formatDate(date, dateFormat, monthLabels),
             epoc: this.utilService.getEpocTime(date)

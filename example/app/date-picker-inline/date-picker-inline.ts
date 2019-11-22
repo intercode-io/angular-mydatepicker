@@ -7,11 +7,12 @@ import {IAngularMyDpOptions, IMyDateModel, IMyCalendarViewChanged, IMyRangeDateS
   styleUrls: ['./date-picker-inline.css']
 })
 export class DatePickerInline implements OnInit {
-
   public myDatePickerOptions: IAngularMyDpOptions = {
-    dateRange: false,
+    dateRange: true,
     inline: true,
-    dateFormat: 'dd.mm.yyyy'
+    dateFormat: 'dd.mm.yyyy',
+    defaultView: 2,
+    monthMode: true
   };
 
   public selectedTextNormal: string = '';
@@ -47,7 +48,7 @@ export class DatePickerInline implements OnInit {
     this.model = {isRange: true, singleDate: null, dateRange: {
       beginDate: {year: today.getFullYear(), month: today.getMonth() + 1, day: today.getDate()},
       endDate: {year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate()}
-    }}; 
+    }};
   }
 
   onYesterdayPlus3(): void {
