@@ -10,6 +10,7 @@ import {YearViewComponent} from "./components/year-view/year-view.component";
 
 import {AngularMyDatePickerDirective} from "./angular-mydatepicker.input";
 import {AngularMyDatePickerCalendarDirective} from "./directives/angular-mydatepicker-calendar.directive";
+import { MonthRangeViewComponent } from './components/month-range-view/month-range-view.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule],
@@ -17,6 +18,7 @@ import {AngularMyDatePickerCalendarDirective} from "./directives/angular-mydatep
     CalendarComponent,
     SelectionBarComponent,
     DayViewComponent,
+    MonthRangeViewComponent,
     MonthViewComponent,
     YearViewComponent,
     AngularMyDatePickerDirective,
@@ -28,6 +30,7 @@ import {AngularMyDatePickerCalendarDirective} from "./directives/angular-mydatep
     SelectionBarComponent,
     DayViewComponent,
     MonthViewComponent,
+    MonthRangeViewComponent,
     YearViewComponent,
     AngularMyDatePickerDirective,
     AngularMyDatePickerCalendarDirective
