@@ -27,7 +27,7 @@ import {DOT, UNDER_LINE, D, M, Y, DATE_ROW_COUNT, DATE_COL_COUNT, MONTH_ROW_COUN
 export class CalendarComponent implements AfterViewInit, OnDestroy {
   @ViewChild("selectorEl") selectorEl: ElementRef;
   @ViewChild("styleEl") styleEl: ElementRef;
-  
+
   @HostBinding("style.position") position = "static";
 
   opts: IMyOptions;
@@ -81,7 +81,7 @@ export class CalendarComponent implements AfterViewInit, OnDestroy {
   initializeComponent(opts: IMyOptions, defaultMonth: string, selectorPos: IMySelectorPosition, inputValue: string, dc: (dm: IMyDateModel, close: boolean) => void, cvc: (cvc: IMyCalendarViewChanged) => void, rds: (rds: IMyRangeDateSelection) => void, cbe: () => void): void {
     this.opts = opts;
     this.selectorPos = selectorPos;
-    
+
     this.dateChanged = dc;
     this.calendarViewChanged = cvc;
     this.rangeDateSelection = rds;
@@ -252,7 +252,15 @@ export class CalendarComponent implements AfterViewInit, OnDestroy {
       for (let j = i; j < i + 3; j++) {
         const disabled: boolean = this.utilService.isMonthDisabledByDisableUntil({year: year, month: j, day: this.daysInMonth(j, year)}, disableUntil)
           || this.utilService.isMonthDisabledByDisableSince({year: year, month: j, day: 1}, disableSince);
-        row.push({nbr: j, name: this.opts.monthLabels[j], currMonth: j === today.month && year === today.year, selected: j === monthNbr && year === this.selectedMonth.year, disabled});
+        row.push({
+          nbr: j,
+          name: this.opts.monthLabels[j],
+          firstDate: {year: year, month: j, day: 1},
+          lastDate: {year: year, month: j, day: this.daysInMonth(j, year)},
+          currMonth: j === today.month && year === today.year,
+          selected: j === monthNbr && year === this.selectedMonth.year,
+          disabled
+        });
       }
       this.months.push(row);
     }
@@ -356,6 +364,11 @@ export class CalendarComponent implements AfterViewInit, OnDestroy {
     // Cell clicked on the calendar
     this.selectDate(cell.dateObj);
     this.resetMonthYearSelect();
+  }
+
+  onMonthRangeCellClicked(cell: IMyCalendarMonth): void {
+    // Month сell clicked on the calendar
+    this.selectDate(cell.firstDate);
   }
 
   onDayCellKeyDown(event: KeyboardEvent) {
@@ -551,7 +564,8 @@ export class CalendarComponent implements AfterViewInit, OnDestroy {
         // Previous month
         for (let j = pm; j <= dInPrevM; j++) {
           const date: IMyDate = {year: m === 1 ? y - 1 : y, month: m === 1 ? 12 : m - 1, day: j};
-          week.push({dateObj: date,
+          week.push({
+            dateObj: date,
             cmo,
             currDay: this.isCurrDay(j, m, y, cmo, today),
             disabled: this.utilService.isDisabledDate(date, this.opts),
@@ -564,7 +578,8 @@ export class CalendarComponent implements AfterViewInit, OnDestroy {
         const daysLeft: number = 7 - week.length;
         for (let j = 0; j < daysLeft; j++) {
           const date: IMyDate = {year: y, month: m, day: dayNbr};
-          week.push({dateObj: date,
+          week.push({
+            dateObj: date,
             cmo,
             currDay: this.isCurrDay(dayNbr, m, y, cmo, today),
             disabled: this.utilService.isDisabledDate(date, this.opts),

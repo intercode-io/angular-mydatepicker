@@ -15,9 +15,14 @@
                     (dayCellClicked)="onDayCellClicked($event)"
                     (dayCellKeyDown)="onDayCellKeyDown($event)"></lib-day-view>
 
-    <lib-month-view *ngIf="selectMonth" [opts]="opts" [months]="months"
+    <lib-month-view *ngIf="selectMonth && !opts.dateRange" [opts]="opts" [months]="months"
                     (monthCellClicked)="onMonthCellClicked($event)"
                     (monthCellKeyDown)="onMonthCellKeyDown($event)"></lib-month-view>
+
+    <lib-month-range-view *ngIf="selectMonth && opts.dateRange" [opts]="opts" [months]="months"
+                    [selectedDate]="selectedDate" [selectedDateRange]="selectedDateRange"
+                    (monthRangeCellClicked)="onMonthRangeCellClicked($event)"
+                    (monthCellKeyDown)="onMonthCellKeyDown($event)"></lib-month-range-view>
 
     <lib-year-view *ngIf="selectYear" [opts]="opts" [years]="years"
                     (yearCellClicked)="onYearCellClicked($event)"
