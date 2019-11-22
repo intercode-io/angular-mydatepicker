@@ -58,26 +58,6 @@ export class MonthRangeViewComponent implements OnChanges {
     }
   }
 
-
-  onMonthCellMouseEnter(cell: any): void {
-    if (this.utilService.isInitializedDate(this.selectedDateRange.begin) &&
-        !this.utilService.isInitializedDate(this.selectedDateRange.end)) {
-      // for (const w of this.dates) {
-      //   for (const day of w.week) {
-      //     day.range = this.utilService.isDateSameOrEarlier(this.selectedDateRange.begin, day.dateObj) && this.utilService.isDateSameOrEarlier(day.dateObj, cell.dateObj);
-      //   }
-      // }
-    }
-  }
-
-  onMonthCellMouseLeave(): void {
-    // for (const w of this.dates) {
-    //   for (const day of w.week) {
-    //     day.range = false;
-    //   }
-    // }
-  }
-
   isDateInRange(date: IMyDate): boolean {
     return this.utilService.isDateInRange(date, this.selectedDateRange);
   }
