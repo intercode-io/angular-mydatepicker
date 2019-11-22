@@ -67,6 +67,18 @@ export class MonthRangeViewComponent implements OnChanges {
   }
 
   isDateRangeBeginOrEndSame(date: IMyDate): boolean {
-    return this.utilService.isDateRangeBeginOrEndSame(this.selectedDateRange, date);
+    let range = this.selectedDateRange;
+
+    // Makind styling think of end date as inlcuded into date range, without mutation
+    if (this.opts.monthMode) {
+      range = {
+        begin: this.selectedDateRange.begin,
+        end: {
+          ...this.selectedDateRange.end,
+          day: 1
+        }
+      };
+    }
+    return this.utilService.isDateRangeBeginOrEndSame(range, date);
   }
 }

@@ -479,17 +479,19 @@ export class CalendarComponent implements AfterViewInit, OnDestroy {
           });
         }
         else {
-          this.selectedDateRange.end = date;
+          const endDate = {
+            ...date,
+            day: this.opts.monthMode && this.opts.dateRange
+                  ? this.daysInMonth(date.month, date.year)
+                  : date.day
+          };
+          // const endDate = date;
+          this.selectedDateRange.end = endDate;
           this.rangeDateSelection({
             isBegin: false,
-            date,
-            jsDate: this.utilService.getDate({
-              ...date,
-              day: this.opts.monthMode && this.opts.dateRange
-                    ? this.daysInMonth(date.month, date.year)
-                    : date.day
-            }),
-            dateFormat: dateFormat,
+            date: endDate,
+            jsDate: this.utilService.getDate(endDate),
+            dateFormat,
             formatted: this.utilService.formatDate(date, dateFormat, monthLabels),
             epoc: this.utilService.getEpocTime(date)
           });
