@@ -1,4 +1,4 @@
-import {Component, ElementRef, ViewEncapsulation, ViewChild, Renderer2, ChangeDetectorRef, AfterViewInit, OnDestroy, HostBinding} from "@angular/core";
+import {Component, ElementRef, ViewEncapsulation, ViewChild, Renderer2, ChangeDetectorRef, AfterViewInit, OnDestroy, HostBinding, ɵConsole} from "@angular/core";
 import {IMyDate} from "../../interfaces/my-date.interface";
 import {IMyDateRange} from "../../interfaces/my-date-range.interface";
 import {IMyMonth} from "../../interfaces/my-month.interface";
@@ -176,12 +176,10 @@ export class CalendarComponent implements AfterViewInit, OnDestroy {
   }
 
   onMonthViewBtnClicked(): void {
+    this.selectMonth = !this.selectMonth;
     if (this.opts.monthMode) {
       this.selectMonth = true;
-      return;
     }
-
-    this.selectMonth = !this.selectMonth;
     this.selectYear = false;
     this.cdr.detectChanges();
     if (this.selectMonth) {
