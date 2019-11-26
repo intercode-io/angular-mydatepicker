@@ -8,4 +8,5 @@ export interface IMyCalendarMonth {
   disabled: boolean;
   firstDate?: IMyDate;
   lastDate?: IMyDate;
+  range?: boolean;
 }

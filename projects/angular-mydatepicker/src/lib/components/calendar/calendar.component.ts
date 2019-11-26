@@ -265,7 +265,8 @@ export class CalendarComponent implements AfterViewInit, OnDestroy {
           lastDate: {year: year, month: j, day: this.daysInMonth(j, year)},
           currMonth: j === today.month && year === today.year,
           selected: j === monthNbr && year === this.selectedMonth.year,
-          disabled
+          disabled,
+          range: false
         });
       }
       this.months.push(row);

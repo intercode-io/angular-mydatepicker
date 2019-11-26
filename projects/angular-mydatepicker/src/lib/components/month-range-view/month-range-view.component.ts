@@ -17,7 +17,6 @@ import { IMyWeek } from '../../interfaces/my-week.interface';
 export class MonthRangeViewComponent implements OnChanges {
   @Input() opts: IMyOptions;
   @Input() months: Array<Array<IMyCalendarMonth>>;
-  // @Input() dates: Array<IMyWeek>;
   @Input() selectedDate: IMyDate;
   @Input() selectedDateRange: IMyDateRange;
   @Output() monthRangeCellClicked: EventEmitter<IMyCalendarMonth> = new EventEmitter<IMyCalendarMonth>();
@@ -30,6 +29,8 @@ export class MonthRangeViewComponent implements OnChanges {
       this.opts = changes[OPTS].currentValue;
     }
     if (changes.hasOwnProperty(MONTHS)) {
+      console.log('months');
+      console.log(this.months);
       this.months = changes[MONTHS].currentValue;
     }
   }
@@ -80,5 +81,23 @@ export class MonthRangeViewComponent implements OnChanges {
       };
     }
     return this.utilService.isDateRangeBeginOrEndSame(range, date);
+  }
+
+  onDayCellMouseEnter(cell: any): void {
+    if (this.utilService.isInitializedDate(this.selectedDateRange.begin) && !this.utilService.isInitializedDate(this.selectedDateRange.end)) {
+      for (const quarter of this.months) {
+        for (const m of quarter) {
+          m.range = this.utilService.isDateSameOrEarlier(this.selectedDateRange.begin, m.firstDate) && this.utilService.isDateSameOrEarlier(m.firstDate, cell.firstDate);
+        }
+      }
+    }
+  }
+
+  onDayCellMouseLeave(): void {
+    for (const quarter of this.months) {
+      for (const m of quarter) {
+        m.range = false;
+      }
+    }
   }
 }

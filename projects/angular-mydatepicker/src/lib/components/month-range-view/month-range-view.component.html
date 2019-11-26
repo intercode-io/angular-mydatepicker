@@ -4,11 +4,12 @@
       <td *ngFor="let m of mr; let i = index"
           id="m_{{mi}}_{{i}}"
           class="m_{{mi}}_{{i}} myDpMonthcell"
-          [ngClass]="{'myDpRangeColor': isDateInRange(m.firstDate),
+          [ngClass]="{'myDpRangeColor': isDateInRange(m.firstDate) || m.range,
                       'myDpSelectedMonth': isDateRangeBeginOrEndSame(m.firstDate),
                       'myDpDisabled': m.disabled,
                       'myDpTableSingleMonth': !m.disabled}" 
-          (click)="onMonthCellClicked($event, m)" tabindex="0">
+          (click)="onMonthCellClicked($event, m)" tabindex="0"
+          (mouseenter)="onDayCellMouseEnter(m)" (mouseleave)="onDayCellMouseLeave()">
         <span class="myDpMonthValue" [ngClass]="{'myDpMarkCurrMonth': m.currMonth && opts.markCurrentMonth}">{{m.name}}</span>
       </td>
     </tr>
