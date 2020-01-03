@@ -29,8 +29,6 @@ export class MonthRangeViewComponent implements OnChanges {
       this.opts = changes[OPTS].currentValue;
     }
     if (changes.hasOwnProperty(MONTHS)) {
-      console.log('months');
-      console.log(this.months);
       this.months = changes[MONTHS].currentValue;
     }
   }
