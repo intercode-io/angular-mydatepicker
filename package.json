@@ -1,8 +1,8 @@
 {
-  "name": "angular-mydatepicker-example",
-  "version": "0.0.2",
+  "name": "angular-mydatepicker-month",
+  "version": "0.0.4",
   "description": "Angular datepicker and date range picker",
-  "homepage": "https://kekeh.github.io/angular-mydatepicker/",
+  "homepage": "https://github.com/intercode-io/angular-mydatepicker/",
   "keywords": [
     "Angular",
     "datepicker",
@@ -12,7 +12,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kekeh/angular-mydatepicker.git"
+    "url": "https://github.com/intercode-io/angular-mydatepicker.git"
   },
   "scripts": {
     "ng": "ng",
@@ -24,7 +24,6 @@
     "lint-lib": "ng lint AngularMyDatePicker",
     "e2e": "ng e2e"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "~7.2.0",
     "@angular/common": "~7.2.0",

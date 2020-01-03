@@ -472,7 +472,7 @@ export class CalendarComponent implements AfterViewInit, OnDestroy {
             isBegin: true,
             date,
             jsDate: this.utilService.getDate(date),
-            dateFormat: dateFormat,
+            dateFormat,
             formatted: this.utilService.formatDate(date, dateFormat, monthLabels),
             epoc: this.utilService.getEpocTime(date)
           });
@@ -484,7 +484,6 @@ export class CalendarComponent implements AfterViewInit, OnDestroy {
                   ? this.daysInMonth(date.month, date.year)
                   : date.day
           };
-          // const endDate = date;
           this.selectedDateRange.end = endDate;
           this.rangeDateSelection({
             isBegin: false,

@@ -33,7 +33,7 @@ export class UtilService {
     const dateValue: Array<IMyDateFormat> = this.getDateValue(dateStr, dateFormat, delimeters);
     const year: number = this.getNumberByValue(dateValue[0]);
     const month: number = isMonthStr ? this.getMonthNumberByMonthName(dateValue[1], monthLabels) : this.getNumberByValue(dateValue[1]);
-    const day: number = this.getNumberByValue(dateValue[2]);
+    const day = this.getNumberByValue(dateValue[2]);
 
     if (month !== -1 && day !== -1 && year !== -1) {
       if (year < minYear || year > maxYear || month < 1 || month > 12) {
@@ -67,7 +67,6 @@ export class UtilService {
       if (dates && dates.length === 2) {
         const [beginDate, endDate] = dates;
         const begin: IMyDate = this.isDateValid(beginDate, options);
-
         if (this.isInitializedDate(begin)) {
           const end: IMyDate = this.isDateValid(endDate, options);
 

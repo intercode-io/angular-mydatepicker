@@ -9,10 +9,10 @@ import {IAngularMyDpOptions, IMyDateModel, IMyCalendarViewChanged, IMyRangeDateS
 export class DatePickerInline implements OnInit {
   public myDatePickerOptions: IAngularMyDpOptions = {
     dateRange: true,
+    monthMode: true,
+    defaultView: 2,
     inline: true,
     dateFormat: 'dd.mm.yyyy',
-    defaultView: 2,
-    monthMode: true
   };
 
   public selectedTextNormal: string = '';

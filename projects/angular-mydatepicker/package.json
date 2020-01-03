@@ -1,6 +1,6 @@
 {
-  "name": "angular-mydatepicker",
-  "version": "0.0.1",
+  "name": "angular-mydatepicker-month",
+  "version": "0.0.4",
   "description": "Angular datepicker and date range picker",
   "homepage": "https://kekeh.github.io/angular-mydatepicker/",
   "keywords": [

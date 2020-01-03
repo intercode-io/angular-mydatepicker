@@ -2,7 +2,6 @@
   <tr>
     <td class="td">
 
-      <form class="form" [formGroup]="myForm" (ngSubmit)="onSubmitReactiveForms()" novalidate>
         <!-- boostrap 3
           <div class="input-group">
               <input class="form-control" placeholder="Select a date" angular-mydatepicker name="reactiveFormsDate" formControlName="myDate"
@@ -16,7 +15,7 @@
         -->
 
         <div class="input-group">
-          <input class="form-control" placeholder="Select a date" angular-mydatepicker name="reactiveFormsDate" formControlName="myDate"
+          <input class="form-control" placeholder="Select a date" angular-mydatepicker [(ngModel)]="model"
                  [options]="myDatePickerOptions" #dp="angular-mydatepicker" autocomplete="off"/>
           <div class="input-group-append">
             <button type="button" class="btn btn-secondary" (click)="dp.clearDate()">
@@ -39,7 +38,6 @@
           <p class="error" *ngIf="myForm.controls.myDate.errors && myForm.controls.myDate.errors.required">Date is required!</p>
           <p class="error" *ngIf="myForm.controls.myDate.errors && myForm.controls.myDate.errors.invalidDateFormat">Invalid date format!</p>
         </div>
-      </form>
 
     </td>
   </tr>

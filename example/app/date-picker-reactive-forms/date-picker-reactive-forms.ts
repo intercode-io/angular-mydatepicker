@@ -9,10 +9,13 @@ import {IAngularMyDpOptions, IMyDateModel} from '../../../projects/angular-mydat
 })
 export class DatePickerReactiveForms implements OnInit {
   public myDatePickerOptions: IAngularMyDpOptions = {
-    dateRange: false,
-    dateFormat: 'dd.mm.yyyy'
+    dateRange: true,
+    monthMode: true,
+    defaultView: 2,
+    dateFormat: 'dd mmm yyyy',
   };
 
+  public model: IMyDateModel = null;   // not initial date set
   public disabled: boolean = false;
 
   public myForm: FormGroup;
